@@ -1,0 +1,82 @@
+{% extends "main/authentication.html" %}
+{% block title %} Rejestracja {% endblock %}
+{% load static %}
+{% block content %}
+<div class="container">
+            <img class="left_wave" src="{% static 'authentication/img/left_wave.png' %}" alt="left wave ">
+            <div class="img">
+                <img  src="{% static 'authentication/img/register_person.svg'%}" alt="">
+            </div>
+            <div class="section-login">
+                <form method="POST" >
+                    {% csrf_token %}
+                    <img src="{% static 'authentication/img/register_avatar.svg' %}" alt="avatar" class="avatar">
+                    <h2>Rejestracja</h2>
+                    <div class="input-div login">
+                        <div class="i">
+                        <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h5>Adres email</h5>
+                            {{ form.email }}
+{#                            <input type="email" class="input">#}
+                        </div>
+                    </div>
+                    <div class="input-div firstname">
+                        <div class="i">
+                        <i class="fas fa-user-check"></i>
+                        </div>
+                        <div>
+                            <h5>Imię</h5>
+                            {{ form.firstName }}
+{#                            <input type="text" class="input">#}
+                        </div>
+                    </div>
+                    <div class="input-div lastname">
+                        <div class="i">
+                        <i class="fas fa-user-check"></i>
+                        </div>
+                        <div>
+                            <h5>Nazwisko</h5>
+                            {{ form.lastName }}
+{#                            <input type="text" class="input">#}
+                        </div>
+                    </div>
+                    <div class="input-div password">
+                        <div class="i">
+                        <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h5>Telefon</h5>
+                            {{ form.phoneNumber }}
+{#                            <input type="text" class="input">#}
+                        </div>
+                    </div>
+                    <div class="input-div password">
+                        <div class="i">
+                        <i class="fas fa-lock"></i>
+                        </div>
+                        <div>
+                            <h5>Hasło</h5>
+                            {{ form.password }}
+{#                            <input type="password" class="input">#}
+                        </div>
+                    </div>
+                    <div class="input-div password">
+                        <div class="i">
+                        <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <h5>Potwierdz hasło</h5>
+                            {{ form.repeatedPassword }}
+{#                            <input type="password" class="input">#}
+                        </div>
+                    </div>
+                    <div class="buttonHolder">
+                    <input type="submit" value="Zarejestruj" class="submit-button">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+{% endblock %}
