@@ -2,6 +2,10 @@
 from django import forms
 
 class RegisterUserForm(forms.Form):
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class' : "input"})
+    )
     email = forms.CharField(
         required=True,
         widget=forms.EmailInput(attrs={'class' : "input"})
@@ -14,10 +18,8 @@ class RegisterUserForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={'class': "input"})
     )
-    phoneNumber = forms.RegexField(regex=r'^\+?1?\d{9,15}$',min_length=9, max_length=9,
-        required=True,
-        widget=forms.NumberInput(attrs={'class': "input"})
-    )
+    phoneNumber = forms.CharField(required=True,
+        widget=forms.NumberInput(attrs={'class': "input"}))
     password = forms.CharField(
         required=True,
         widget=forms.PasswordInput(attrs={'class': "input"})

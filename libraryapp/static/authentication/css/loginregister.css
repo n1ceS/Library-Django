@@ -154,3 +154,8 @@ a:hover{
 .submit-button:hover{
     background-position: left;
 }
+.validation-error{
+    font-size: 18px;
+    font-weight: bold;
+    color: crimson;
+}

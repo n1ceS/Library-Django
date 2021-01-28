@@ -1,6 +1,10 @@
-{% extends "main/authentication.html" %}
+{% extends "libraryapp/base.html" %}
 {% block title %} Rejestracja {% endblock %}
 {% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'authentication/css/loginregister.css' %}">
+<script type="text/javascript" src="{% static 'authentication/js/loginRegister.js' %}" async defer></script>
+{% endblock head %}
 {% block content %}
 <div class="container">
             <img class="left_wave" src="{% static 'authentication/img/left_wave.png' %}" alt="left wave ">
@@ -15,6 +19,16 @@
                     <div class="input-div login">
                         <div class="i">
                         <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <h5>Nazwa użytkownika</h5>
+                            {{ form.username }}
+{#                            <input type="email" class="input">#}
+                        </div>
+                    </div>
+                    <div class="input-div login">
+                        <div class="i">
+                        <i class="fas fa-envelope"></i>
                         </div>
                         <div>
                             <h5>Adres email</h5>
@@ -73,10 +87,18 @@
                         </div>
                     </div>
                     <div class="buttonHolder">
+                        {% for message in messages %}
+                            <p class="validation-error" >{{ message }}</p>
+                        {% endfor %}
+
+                        <p></p>
                     <input type="submit" value="Zarejestruj" class="submit-button">
                     </div>
 
                 </form>
             </div>
         </div>
+    {% block js %}
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+     {% endblock js %}
 {% endblock %}
