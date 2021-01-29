@@ -11,7 +11,12 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 7rem;
-    padding:  0 2 rem;
+    padding:  0 2rem;
+}
+.logo {
+    float: left;
+    width: 30%;
+    text-align: left;
 }
 .img {
     display: flex;
@@ -24,6 +29,7 @@
 }
 .left_wave{
     position: fixed;
+    height: 100vh;
     height: 100%;
     left:0;
     bottom:0;
@@ -124,8 +130,8 @@ a{
    display: block;
    text-align: center;
    text-decoration: none;
-   color:#d3d3d3;
-   font-size: 0.7rem;
+   color:#525252;
+   font-size: 1rem;
    transition: .2s; 
 }
 

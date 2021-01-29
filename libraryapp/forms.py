@@ -28,3 +28,13 @@ class RegisterUserForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(attrs={'class': "input"})
     )
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        required=True,
+        widget=forms.TextInput(attrs={'class' : "input"})
+    )
+    password = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput(attrs={'class': "input"})
+    )

@@ -1,0 +1,90 @@
+{% extends "libraryapp/base.html" %}
+{% block title %} Wypożyczenie książki {% endblock %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'reserve/style.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+      <div class="container">
+            <div class="header">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                    </div>
+                    <div class="navigation">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a class="link" href="/dashboard">Strona Główna</a></li>
+                            <li class="navigation__item"><a class="link" href="/books">Książki</a></li>
+                            <li class="navigation__item"><a class="link" href="/hirement">Wypożyczenia</a></li>
+                            <li class="navigation__item"><a class="link" href="/contact">Kontakt</a></li>
+                            <li class="navigation__item"><a class="link" href="/settings">Ustawienia</a></li>
+                            <li class="navigation__item "><a class ="login-btn" href="/logout">Wyloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+     </div>
+ <div class="book-container">
+            <div class="book">
+                <div class="book-details">
+                    <div class="book-image">
+                        <img src="{% static ''|add:book.image.url %}" alt="">
+                    </div>
+                    <div class="description">
+                        <h1><strong>{{ book.title }}</strong></h1>
+                        <h3>Autor: {{ book.author }}</h3>
+                        <h3>Rok: {{ book.year }}</h3>
+                        <h3>Kategoria: {{ book.category }}</h3>
+                        <h3>Wydawnictwo: {{ book.publisher }}</h3>
+                        <h3>Ilość: {{ book.count}}</h3>
+                        <p>
+                            {{ book.description }}
+                        </p>
+
+                        <div class="quote">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form">
+                    <span class="title-header">DANE CZYTELNIKA</span>
+                    <form action="{{ book.id }}" method="POST">
+                        {% csrf_token %}
+                        <div class="input-full">
+                            <span class="fa fa-calendar"></span>
+                            <select name="days" id="" class="days">
+                                <option value="0">Czas wypożyczenia...</option>
+                                <option value="15">15 dni</option>
+                                <option value="30">30 dni</option>
+                                <option value="45">45 dni</option>
+                                <option value="60">60 dni</option>
+                            </select>
+                            {% for message in messages %}
+                            <p class="message-error">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="user-information">
+                            <span class="fa fa-user"></span>
+                            <input type="text" placeholder="Imię" value="{{ reader.user.first_name }}" disabled>
+                        </div>
+                        <div class="user-information">
+                            <span class="fa fa-user"></span>
+                            <input type="text" placeholder="Nazwisko" value="{{ reader.user.last_name }}" disabled>
+                        </div>
+                        <div class="user-information">
+                            <span class="fa fa-phone"></span>
+                            <input type="text" placeholder="Telefon" value="{{ reader.telephoneNumber}}" disabled>
+                        </div>
+                        <div class="user-information">
+                            <span class="fa fa-envelope"></span>
+                            <input type="text" placeholder="Email" value="{{ reader.user.email }}" disabled>
+                        </div>
+                        <input type="submit" class="submit-button" value="Wyślij"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

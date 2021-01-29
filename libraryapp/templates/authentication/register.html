@@ -1,11 +1,14 @@
 {% extends "libraryapp/base.html" %}
-{% block title %} Rejestracja {% endblock %}
+{% block title %} Wypożyczenie książki {% endblock %}
 {% load static %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'authentication/css/loginregister.css' %}">
 <script type="text/javascript" src="{% static 'authentication/js/loginRegister.js' %}" async defer></script>
 {% endblock head %}
 {% block content %}
+<div class="logo">
+    <a href="/"><img src="{% static 'authentication/img/logo.png' %}"></a>
+</div>
 <div class="container">
             <img class="left_wave" src="{% static 'authentication/img/left_wave.png' %}" alt="left wave ">
             <div class="img">
@@ -14,7 +17,7 @@
             <div class="section-login">
                 <form method="POST" >
                     {% csrf_token %}
-                    <img src="{% static 'authentication/img/register_avatar.svg' %}" alt="avatar" class="avatar">
+{#                    <img src="{% static 'authentication/img/register_avatar.svg' %}" alt="avatar" class="avatar">#}
                     <h2>Rejestracja</h2>
                     <div class="input-div login">
                         <div class="i">
@@ -90,8 +93,7 @@
                         {% for message in messages %}
                             <p class="validation-error" >{{ message }}</p>
                         {% endfor %}
-
-                        <p></p>
+                    <a href="/login">Zaloguj się</a>
                     <input type="submit" value="Zarejestruj" class="submit-button">
                     </div>
 
@@ -101,4 +103,4 @@
     {% block js %}
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
      {% endblock js %}
-{% endblock %}
+{% endblock content %}

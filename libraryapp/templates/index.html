@@ -1,0 +1,67 @@
+{%  extends 'libraryapp/base.html' %}
+{%  block head %}
+    {% load static %}
+<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'home/styles/style.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+  <div class="container">
+            <div class="header">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                    </div>
+                    <div class="navigation">
+                        <ul class="navigation__list">
+                            <li class="navigation__item">Strona Główna</li>
+                            <li class="navigation__item">Jak to działa?</li>
+                            <li class="navigation__item">O nas</li>
+                            <li class="navigation__item">Warunki</li>
+                            <li class="navigation__item">Kontakt</li>
+                            <li class="navigation__item "><a class ="login-btn" href="/login">Zaloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+                <div class="banner">
+                    <div class="app-text">
+                        <h3>Biblioteka dla każdego</h3>
+                        <h1>"Kto czyta, żyje podwójnie."</h1>
+                        <p>Wypożyczanie książek jeszcze nigdy nie było tak łatwe! <br>Rezerwuj, wypożyczaj i zwracaj książki za pomocą własnego QR Code!</p>
+
+                        <div class="btn-group">
+                                <a href="/dashboard" class="signup-btn">Zacznij czytać!</a>
+                        </div>
+                    </div>
+                    <div class="app-picture">
+                        <img src="{% static 'home/img/home_library.png' %}" alt="library picture">
+                    </div>
+
+                </div>
+                <div class="about-services">
+                    <ul>
+                        <li>
+                            <img src="{% static 'home/img/find_your_book.png' %}" alt="">
+                            <h1>Znajdź książkę</h1>
+                            <p>Posiadamy thrillery, książki fantasy, romanse, horrory czy książki biograficzne.<br> Na pewno znajdziesz coś dla Siebie! </p>
+                        </li>
+
+                        <li>
+                            <img src="{% static 'home/img/get_qrcode.png' %}" alt="">
+                            <h1>Zdobądź QR CODE</h1>
+                            <p>Po pomyślnym wypożyczeniu książki<br> dostaniesz QR Code, dzięki któremu dany tytuł będzie należał tylko do Ciebie!</p>
+                        </li>
+
+                        <li>
+                            <img src="{% static 'home/img/book_reading.png' %}" alt="">
+                            <h1>Odbierz książkę</h1>
+                            <p>Przyjdź do wybranego punktu, okaż swój QR Code i zacznij czytać!</p>
+                        </li>
+                </ul>
+                </div>
+        </div>
+{% endblock content %}

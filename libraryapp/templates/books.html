@@ -1,0 +1,64 @@
+{%  extends 'libraryapp/base.html' %}
+{%  block head %}
+    {% load static %}
+<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'home/styles/books.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+  <div class="container">
+            <div class="header">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                    </div>
+                    <div class="navigation">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a class="link" href="/dashboard">Strona Główna</a></li>
+                            <li class="navigation__item"><a class="link" href="/books">Książki</a></li>
+                            <li class="navigation__item"><a class="link" href="/hirement">Wypożyczenia</a></li>
+                            <li class="navigation__item"><a class="link" href="/contact">Kontakt</a></li>
+                            <li class="navigation__item"><a class="link" href="/settings">Ustawienia</a></li>
+                            <li class="navigation__item "><a class ="login-btn" href="/logout">Wyloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+  </div>
+    <div class="book-table">
+                <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Obraz</th>
+                    <th>Tytuł</th>
+                    <th>Autor</th>
+                    <th>Kategoria</th>
+                    <th>Ilość</th>
+                    <th>Rok</th>
+                    <th>Publikacja</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+             {% for book in books %}
+                <tr>
+                <th class="image"><img src="{% static ''|add:book.image.url %}" alt=""></th>
+                <th>{{ book.title}}</th>
+                <th>{{ book.author }}</th>
+                <th>{{ book.category }}</th>
+                <th>{{ book.count }}</th>
+                <th>{{ book.year }}</th>
+                <th>{{ book.publisher }}</th>
+                <th><a href="/reserve/{{ book.id }}" class="reserve-button">Wypożycz</a></th>
+                </tr>
+             {% endfor %}
+
+            </tbody>
+        </table>
+            </div>
+
+{% endblock content %}

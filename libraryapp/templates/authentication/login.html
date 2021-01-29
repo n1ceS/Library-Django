@@ -1,0 +1,58 @@
+{% extends 'libraryapp/base.html' %}
+{% block title %} Rejestracja {% endblock %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'authentication/css/loginregister.css' %}">
+<script type="text/javascript" src="{% static 'authentication/js/loginRegister.js' %}" async defer></script>
+{% endblock head %}
+{% block content %}
+<div class="logo">
+    <a href="/"><img src="{% static 'authentication/img/logo.png' %}"></a>
+</div>
+<div class="content">
+            <img class="left_wave" src="{% static 'authentication/img/left_wave.png' %}" alt="left wave">
+            <div class="container">
+                <div class="img">
+                    <img  src="{% static 'authentication/img/person.svg' %}" alt="">
+                </div>
+                <div class="section-login">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <img src="{% static 'authentication/img/avatar.svg' %}" alt="avatar" class="avatar">
+                        <h2>Logowanie</h2>
+                        <div class="input-div login">
+                            <div class="i">
+                            <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h5>Nazwa użytkownika</h5>
+                                {{ form.username }}
+{#                                <input type="text" class="input">#}
+                            </div>
+                        </div>
+                        <div class="input-div password">
+                            <div class="i">
+                            <i class="fas fa-lock"></i>
+                            </div>
+                            <div>
+                                <h5>Hasło</h5>
+                                {{ form.password }}
+{#                                <input type="password" class="input">#}
+                            </div>
+                        </div>
+                        {% for message in messages %}
+                            <p class="validation-error" >{{ message }}</p>
+                        {% endfor %}
+                        <a href="/register">Zarejestruj się</a>
+                        <div class="buttonHolder">
+                        <input type="submit" value="Zaloguj" class="submit-button">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% block js %}
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        {% endblock js %}
+{% endblock content %}
