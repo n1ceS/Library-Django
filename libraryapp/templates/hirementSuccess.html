@@ -1,0 +1,42 @@
+{%  extends 'libraryapp/base.html' %}
+{%  block head %}
+    {% load static %}
+    {%  load qr_code %}
+<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'hirementSuccess/style/style.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+  <div class="container">
+            <div class="header">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                    </div>
+                    <div class="navigation">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a class="link" href="/dashboard">Strona Główna</a></li>
+                            <li class="navigation__item"><a class="link" href="/books">Książki</a></li>
+                            <li class="navigation__item"><a class="link" href="/hirement">Wypożyczenia</a></li>
+                            <li class="navigation__item"><a class="link" href="/contact">Kontakt</a></li>
+                            <li class="navigation__item"><a class="link" href="/settings">Ustawienia</a></li>
+                            <li class="navigation__item "><a class ="login-btn" href="/logout">Wyloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+  </div>
+    <div class="success-container">
+        <img class="success-logo" src="{% static 'hirementSuccess/img/success_logo.svg' %}"/>
+        <h1>Udało się, wypożyczyłeś książkę!</h1>
+        <h2>Twoje zgłoszenie rezerwacji zostało pozytywnie przyjęte!</h2>
+        <h2>Oto twój kod* QR:</h2>
+        {% qr_from_text hirement.qrcode size=8 image_format="png" error_correction="L" %}
+        <p>*Kod QR pozwala Ci szybko, a przede  wszystkim bezpiecznie wypożyczyć  książkę. Zachowaj go, przyda Ci się przy odbiorze książki!</p>
+        <a class="continue-link" href="/books">Kontynuuj</a>
+    </div>
+{% endblock content %}

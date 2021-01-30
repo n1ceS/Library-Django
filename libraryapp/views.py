@@ -2,11 +2,14 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from .models import Reader, Book, Hirement
-from django.utils import timezone
+from django.utils import timezone, translation
 from django.contrib.auth.models import User, Group
 from .forms import RegisterUserForm, LoginForm
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
 # Create your views here.
 import random
 
@@ -89,15 +92,30 @@ def reservation(request,pk):
             return redirect('reserve', pk)
         else:
             qrcode = random.getrandbits(128)
+            translation.activate('pl')
             hire_date = timezone.now()
             expiration_date = timezone.now() + timezone.timedelta(days=int(answer))
             book = Book.objects.get(pk=pk)
             if(book is None):
                 return redirect('dashboard')
+            if(book.count == 0):
+                messages.error(request, "Aktualnie nie ma wolnego egzemplarza!")
+                return redirect('reserve', pk)
             reader = Reader.objects.get(user=request.user)
             hirement = Hirement.objects.create(qrcode=qrcode, hire_date=hire_date, expiration_date=expiration_date, reader=reader, book=book)
+            book.count -=1
+            sendEmail(hirement)
             return render(request, 'hirementSuccess.html', {'hirement' : hirement})
     else:
         book = Book.objects.get(pk=pk)
         reader = Reader.objects.get(user=request.user)
         return render(request, 'reserve.html', {'book' : book, "reader" : reader })
+
+def sendEmail(hirement):
+    html = get_template('emailTemplate.html')
+    #d = Context({'hirement' : hirement})
+    subject, from_email, to = "Potwierdzenie wypożyczenia " + hirement.book.title + " - QRLibrary", 'wypozyczenia@qrlibrary.com', hirement.reader.user.email
+    html_content = html.render({'hirement': hirement})
+    msg = EmailMultiAlternatives(subject, "", from_email, [to])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()

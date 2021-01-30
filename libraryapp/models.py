@@ -1,5 +1,5 @@
 from django.db import models
-import datetime
+
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -39,6 +39,8 @@ class Book(models.Model):
 
     def __str__(self):
         return str(self.id) + " " + str(self.author)  + " " + self.title
+
+
 class Hirement(models.Model):
     id = models.AutoField(primary_key=True)
     qrcode = models.CharField(max_length= 200, null=True, blank=True)
