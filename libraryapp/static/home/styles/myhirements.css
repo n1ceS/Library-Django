@@ -43,12 +43,12 @@ ul {
 .link {
   text-decoration: none;
   color: #000;
-  transition: .3s;
-}
+  transition: .3s; }
 
 .link.active {
     color: #A063FF;
 }
+
 .link:hover {
   color: #A063FF; }
 
@@ -85,12 +85,12 @@ ul {
 .content-table thead tr {
     margin: 80px 0px 80px 0px;
     color:#000;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .content-table tbody tr th img{
-    height: 350px;
-    width: 250px;
+    height: 270px;
+    width: 200px;
 }
 .content-table th,
 .content-table td {
@@ -116,3 +116,30 @@ ul {
 .content-table tbody tr:last-of-type {
     border-bottom: 5px solid #7b4dc4;
 }
+.qr-image {
+    width: 230px;
+}
+.qr-image img {
+    display: none;
+    max-width: 200px;
+    max-height: 200px;
+    border: 4px solid #A063FF;
+    border-radius: 5px;
+}
+.qr-image.visible img{
+    display: block;
+}
+.show-image-button {
+    background-color: #A063FF;
+    padding: 10px;
+    color:#fff;
+    display: block;
+    margin: 0 auto;
+    width: 60%;
+    border-radius: 25px;
+    cursor: pointer;
+}
+.show-image-button.hidden {
+    display: none;
+}
+

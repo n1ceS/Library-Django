@@ -95,7 +95,7 @@
             <h3><strong>Autor:</strong> <span class="highlighted">{{ hirement.book.author }}</span></h3>
             <h3><strong>Data wypożyczenia: </strong><span class="highlighted">{{ hirement.hire_date|date:'d E Y'}}</span></h3>
             <h3><strong>Termin oddania: </strong><span class="highlighted">{{ hirement.expiration_date|date:'d E Y' }}</span></h3>
-            <h1>KOD <QR></QR></h1>
+            <h1>KOD QR*</h1>
              {% qr_from_text hirement.qrcode size=8 image_format="png" error_correction="L" %}
             <h3>Pozdrawiamy, <br> Zespół <strong>QRLibrary</strong> </h3>
             <p>*Nie zapomnij go ze sobą zabrać, to znacznie ułatwi nam współpracę!</p>

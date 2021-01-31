@@ -11,6 +11,9 @@ class Reader(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     telephoneNumber = models.CharField(null=True, blank=True, max_length=9)
 
+    def __str__(self):
+        return self.user.first_name + " " + self.user.last_name + " " + self.user.email + " " + self.telephoneNumber
+
 class Author(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50, blank=True, null=True)
@@ -49,3 +52,6 @@ class Hirement(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     reader = models.ForeignKey(Reader, null=True, on_delete=models.CASCADE, blank=True)
     status = models.CharField(max_length=30, default="Zarezerwowana")
+
+    def __str__(self):
+        return str(self.id) + " " + self.reader.user.first_name + " " + self.reader.user.last_name + " " + self.book.title

@@ -25,5 +25,6 @@ urlpatterns = [
     path('dashboard', views.dashboard, name="dashboard"),
     path('logout', views.logout, name="logout"),
     path('books', views.get_all_books, name="books"),
-    path('reserve/<int:pk>', views.reservation, name="reserve")
+    path('reserve/<int:pk>', views.reservation, name="reserve"),
+    path('hirements', views.getHirements, name="hirements")
 ]

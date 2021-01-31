@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
-from django.template import Context
+from django.db.models import F, Count
+import itertools
 # Create your views here.
 import random
 
@@ -76,7 +77,21 @@ def logout(request):
 
 @login_required(login_url='/login')
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    cntx={}
+    reader = Reader.objects.get(user = request.user)
+    hire_books_count = Hirement.objects.filter(reader=reader).count()
+    returned_books_count = Hirement.objects.filter(reader=reader, status="Zwrocona").count()
+    to_return_books_count = hire_books_count - returned_books_count;
+
+    cntx['hire_books_count'] = hire_books_count
+    cntx['returned_books_count'] = returned_books_count
+    cntx['to_return_books_count'] = to_return_books_count
+
+    bestReaders = Reader.objects.annotate(books_count = Count('hirement')).order_by('-books_count')
+    bestBooks = Book.objects.annotate(hire_count = Count('hirement')).order_by('-hire_count')
+    cntx['top10users'] = itertools.islice(bestReaders, 10)
+    cntx['top10books'] = itertools.islice(bestBooks, 10)
+    return render(request, 'dashboard.html', {'info' : cntx})
 
 @login_required(login_url='/login')
 def get_all_books(request):
@@ -91,7 +106,7 @@ def reservation(request,pk):
             messages.error(request, "Nie wybrano liczby dni!")
             return redirect('reserve', pk)
         else:
-            qrcode = random.getrandbits(128)
+            qrcode = str(random.getrandbits(128))
             translation.activate('pl')
             hire_date = timezone.now()
             expiration_date = timezone.now() + timezone.timedelta(days=int(answer))
@@ -102,8 +117,8 @@ def reservation(request,pk):
                 messages.error(request, "Aktualnie nie ma wolnego egzemplarza!")
                 return redirect('reserve', pk)
             reader = Reader.objects.get(user=request.user)
-            hirement = Hirement.objects.create(qrcode=qrcode, hire_date=hire_date, expiration_date=expiration_date, reader=reader, book=book)
-            book.count -=1
+            hirement = Hirement.objects.create(qrcode="R"+qrcode, hire_date=hire_date, expiration_date=expiration_date, reader=reader, book=book)
+            Book.objects.filter(id=book.id).update(count=F('count')-1)
             sendEmail(hirement)
             return render(request, 'hirementSuccess.html', {'hirement' : hirement})
     else:
@@ -119,3 +134,10 @@ def sendEmail(hirement):
     msg = EmailMultiAlternatives(subject, "", from_email, [to])
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
+@login_required(login_url='/login')
+def getHirements(request):
+    translation.activate('pl')
+    reader = Reader.objects.get(user = request.user)
+    hirements = Hirement.objects.filter(reader = reader)
+    return render(request, 'myhirements.html', {'hirements' : hirements})

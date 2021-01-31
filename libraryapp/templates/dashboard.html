@@ -3,7 +3,7 @@
     {% load static %}
 <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'home/styles/style.css' %}">
+        <link rel="stylesheet" href="{% static 'dashboard/styles/style.css' %}">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -17,9 +17,9 @@
                     </div>
                     <div class="navigation">
                         <ul class="navigation__list">
-                            <li class="navigation__item"><a class="link" href="/dashboard">Strona Główna</a></li>
+                            <li class="navigation__item "><a class="link active" href="/dashboard">Strona Główna</a></li>
                             <li class="navigation__item"><a class="link" href="/books">Książki</a></li>
-                            <li class="navigation__item"><a class="link" href="/hirement">Wypożyczenia</a></li>
+                            <li class="navigation__item"><a class="link" href="/hirements">Wypożyczenia</a></li>
                             <li class="navigation__item"><a class="link" href="/contact">Kontakt</a></li>
                             <li class="navigation__item"><a class="link" href="/settings">Ustawienia</a></li>
                             <li class="navigation__item "><a class ="login-btn" href="/logout">Wyloguj</a></li>
@@ -28,4 +28,87 @@
                 </div>
             </div>
   </div>
+                <h1 class="h1-ranking">Twoje statystyki</h1>
+            <div class="row">
+                <div class="card bg-c-blue order-card">
+                    <div class="card-block">
+                        <img src="{% static 'dashboard/img/readed_books.png' %}" alt="">
+                        <h3 class="m-b-20">Książki wypożyczone</h3>
+                        <h1>{{ info.hire_books_count }}</h1>
+                    </div>
+                </div>
+
+                <div class="card bg-c-green order-card">
+                    <div class="card-block ">
+                        <img src="{% static 'dashboard/img/returned_books.png' %}" alt="">
+                        <h3 class="m-b-20">Książki Zwrócone</h3>
+                        <h1>{{ info.returned_books_count }}</h1>
+                    </div>
+                </div>
+
+                <div class="card bg-c-yellow order-card">
+                    <div class="card-block">
+                        <img src="{% static 'dashboard/img/not_returned_books.png' %}" alt="">
+                        <h3 class="m-b-20">Książki do oddania</h3>
+                        <h1>{{ info.to_return_books_count }}</h1>
+                    </div>
+                </div>
+
+        </div>
+            <h1 class="h1-ranking">Ranking</h1>
+        <div class="rankings">
+            <div class="ranking-container">
+                <h2>Najczęściej wypożyczający</h2>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Pozycja</th>
+                            <th>Użytkownik</th>
+                            <th>Liczba</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in info.top10users %}
+                            <tr>
+                                {% if forloop.counter == 1 %}
+                                    <th><img src="{% static 'dashboard/img/leader_icon.svg' %}">{{ forloop.counter }}.</th>
+                                {% else %}
+                                    <th>{{ forloop.counter }}.</th>
+                                {% endif %}
+                            <th>{{ user.user.first_name }} {{ user.user.last_name }}</th>
+                            <th>{{ user.books_count }}</th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ranking-book-container">
+                <h2>Najczęściej wypożyczane</h2>
+                <table class="ranking-table book">
+                    <thead>
+                        <tr>
+                            <th>Pozycja</th>
+                            <th>Książka</th>
+                            <th>Ile razy</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in info.top10books%}
+                            <tr>
+                                {% if forloop.counter == 1 %}
+                                    <th><img src="{% static 'dashboard/img/leader_icon.svg' %}">{{ forloop.counter }}.</th>
+                                {% else %}
+                                    <th>{{ forloop.counter }}.</th>
+                                {% endif %}
+                            <th>{{ book.title }}</th>
+                            <th>{{ book.hire_count }}</th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 {% endblock content %}

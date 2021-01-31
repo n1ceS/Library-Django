@@ -47,7 +47,9 @@ ul {
   text-decoration: none;
   color: #000;
   transition: .3s; }
-
+.link.active {
+    color: #A063FF;
+}
 .link:hover {
   color: #A063FF; }
 
