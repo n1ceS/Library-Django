@@ -49,10 +49,14 @@
     {#                                <input type="password" class="input">#}
                     </div>
                 </div>
-                {% for message in messages %}
-                    <p class="validation-error" >{{ message }}</p>
-                {% endfor %}
                 <div class="buttonHolder">
+                    {% for message in messages %}
+                            {% if message.tags == "success" %}
+                                <p class="validation-success">{{ message }}</p>
+                            {% else %}
+                                <p class="validation-error">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
                 <input type="submit" value="Wyślij" class="submit-button">
                 </div>
             </form>

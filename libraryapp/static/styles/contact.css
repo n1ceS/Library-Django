@@ -65,3 +65,9 @@
     height: 400px;
     left: -300px;
 }
+
+.validation-success {
+    color: green;
+    text-align: center;
+    font-weight: bold;
+}

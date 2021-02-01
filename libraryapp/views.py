@@ -12,7 +12,9 @@ from django.template.loader import get_template
 from django.db.models import F, Count
 import itertools
 # Create your views here.
-import random
+import random,re
+email_regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
+telephone_regex = "^\\d{9}$"
 
 def index(request):
     if request.user.is_authenticated:
@@ -31,7 +33,6 @@ def register(request):
             phoneNumber = form.cleaned_data.get('phoneNumber')
             password = form.cleaned_data.get('password')
             repeatedPassword = form.cleaned_data.get('repeatedPassword')
-            print(len(phoneNumber))
             if password != repeatedPassword:
                 messages.error(request, "Hasła nie są takie same!")
                 return redirect('register')
@@ -165,14 +166,36 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
             Message.objects.create(sender=request.user, subject=subject, message = message)
-            return redirect('dashboard')
+            messages.success(request, "Wiadomość została wysłana!")
+            return redirect("contact")
     return render(request, 'contact.html', {'form' : form})
 
 @login_required(login_url='/login')
 def settings(request):
     reader = Reader.objects.get(user=request.user)
     if(request.method == "POST"):
-
-
-
+        username = request.POST['username']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        telephone = request.POST['telephone']
+        if username == "" or first_name == "" or last_name == "" or last_name == "" or email == "" or telephone == "":
+            messages.error(request,"Wypełnij wszystkie pola!")
+            return redirect("settings")
+        if User.objects.get(username=username) is not None and username != request.user.username:
+            messages.error(request, "Ktoś już ma taką nazwę użytkownika!")
+            return redirect("settings")
+        if not re.search(email_regex, email):
+            messages.error(request, "Podaj poprawny adres email!")
+            return redirect("settings")
+        if User.objects.get(email=email) is not None and email != request.user.email:
+            messages.error(request, "Konto z tym adresem email już istnieje!")
+            return redirect("settings")
+        if not re.search(telephone_regex, telephone):
+            messages.error(request, "Podano niepoprawny numer telefonu!")
+            return redirect("settings")
+        Reader.objects.filter(user = reader.user).update(telephoneNumber=telephone)
+        User.objects.filter(id=reader.user.id).update(username=username, first_name=first_name, last_name=last_name, email=email)
+        reader = Reader.objects.get(user=request.user)
+        messages.success(request, "Pomyślnie zaaktualizowano dane!")
     return render(request, 'settings.html', {'reader': reader})

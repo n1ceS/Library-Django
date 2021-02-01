@@ -38,21 +38,30 @@
                         <h3>Lorem, ipsum dolor.</h3>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus!</p>
                     </div>
+                    <p class="change-password">Zmień Hasło</p>
                 </div>
                 <div class="details-right-side">
 
                     <form method="POST">
+                        {% csrf_token %}
                         <h1>Dane użytkownika</h1>
                         <label for="username" class="input-label">Nazwa użytkownika</label>
-                        <input type="text" name="username" value="{{ reader.user.username }}"/>
+                        <input required="required" type="text" name="username" value="{{ reader.user.username }}"/>
                         <label for="first_name" class="input-label">Imię</label>
-                        <input type="text" name="first_name" value="{{ reader.user.first_name }}"/>
+                        <input required="required" type="text" name="first_name" value="{{ reader.user.first_name }}"/>
                         <label for="last_name" class="input-label">Nazwisko</label>
-                        <input type="text" name="last_name" value="{{ reader.user.last_name }}"/>
+                        <input required="required" type="text" name="last_name" value="{{ reader.user.last_name }}"/>
                         <label for="email" class="input-label">Adres email</label>
                         <input type="text" name="email" value="{{ reader.user.email }}"/>
                         <label for="telephone" class="input-label">Telefon</label>
-                        <input type="text" name="telephone" value="{{ reader.telephoneNumber }}"/>
+                        <input required="required" type="tel" name="telephone" value="{{ reader.telephoneNumber }}"/>
+                        {% for message in messages %}
+                            {% if message.tags == "success" %}
+                                <p class="validation-success">{{ message }}</p>
+                            {% else %}
+                                <p class="validation-error">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
                         <button type="submit" value="Aktualizuj">Aktualizuj</button>
                     </form>
                 </div>
