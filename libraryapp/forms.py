@@ -38,3 +38,7 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(attrs={'class': "input"})
     )
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(required=True, widget=forms.TextInput(attrs={'class' : 'subject-input'}))
+    message = forms.CharField(required=True, widget=forms.Textarea(attrs={'class' : 'message-input', 'rows' : "10", 'cols':"70"}))

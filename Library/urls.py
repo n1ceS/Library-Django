@@ -26,5 +26,7 @@ urlpatterns = [
     path('logout', views.logout, name="logout"),
     path('books', views.get_all_books, name="books"),
     path('reserve/<int:pk>', views.reservation, name="reserve"),
-    path('hirements', views.getHirements, name="hirements")
+    path('hirements', views.getHirements, name="hirements"),
+    path('contact', views.contact, name="contact"),
+    path('settings', views.settings, name="settings"),
 ]

@@ -55,3 +55,12 @@ class Hirement(models.Model):
 
     def __str__(self):
         return str(self.id) + " " + self.reader.user.first_name + " " + self.reader.user.last_name + " " + self.book.title
+
+class Message(models.Model):
+    id = models.AutoField(primary_key=True)
+    sender = models.ForeignKey(User, null=True, on_delete=models.CASCADE, blank=True)
+    subject = models.CharField(max_length=50, null=True, blank=True)
+    message = models.CharField(max_length=500, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.id) + " " + self.sender.first_name +" " + self.sender.last_name  +" "+ self.subject

@@ -1,0 +1,61 @@
+{% extends "libraryapp/base.html" %}
+{% block title %} Wypożyczenie książki {% endblock %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'styles/settings.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+      <div class="container">
+            <div class="header">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                    </div>
+                    <div class="navigation">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a class="link" href="/dashboard">Strona Główna</a></li>
+                            <li class="navigation__item"><a class="link" href="/books">Książki</a></li>
+                            <li class="navigation__item"><a class="link" href="/hirements">Wypożyczenia</a></li>
+                            <li class="navigation__item"><a class="link" href="/contact">Kontakt</a></li>
+                            <li class="navigation__item"><a class="link active" href="/settings">Ustawienia</a></li>
+                            <li class="navigation__item "><a class ="login-btn" href="/logout">Wyloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+     </div>
+        <div class="settings-container">
+            <div class="settings-panel">
+                <div class="info-left-side">
+                    <img src="{% static 'img/settings_image.svg' %}" alt="" />
+                    <h1>Kilka uwag</h1>
+                    <div class="info">
+                    <h3>Lorem, ipsum dolor.</h3>
+                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab aspernatur ipsa porro eius accusantium nam in ut id ex debitis! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus!</p>
+                        <h3>Lorem, ipsum dolor.</h3>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus!</p>
+                    </div>
+                </div>
+                <div class="details-right-side">
+
+                    <form method="POST">
+                        <h1>Dane użytkownika</h1>
+                        <label for="username" class="input-label">Nazwa użytkownika</label>
+                        <input type="text" name="username" value="{{ reader.user.username }}"/>
+                        <label for="first_name" class="input-label">Imię</label>
+                        <input type="text" name="first_name" value="{{ reader.user.first_name }}"/>
+                        <label for="last_name" class="input-label">Nazwisko</label>
+                        <input type="text" name="last_name" value="{{ reader.user.last_name }}"/>
+                        <label for="email" class="input-label">Adres email</label>
+                        <input type="text" name="email" value="{{ reader.user.email }}"/>
+                        <label for="telephone" class="input-label">Telefon</label>
+                        <input type="text" name="telephone" value="{{ reader.telephoneNumber }}"/>
+                        <button type="submit" value="Aktualizuj">Aktualizuj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+{% endblock content %}

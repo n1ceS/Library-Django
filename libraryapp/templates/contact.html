@@ -1,0 +1,64 @@
+{%  extends 'libraryapp/base.html' %}
+{%  block head %}
+    {% load static %}
+<meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'home/styles/books.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/contact.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+{% endblock head %}
+{% block content %}
+  <div class="container">
+            <div class="header">
+                <div class="navbar">
+                    <div class="logo">
+                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                    </div>
+                    <div class="navigation">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a class="link" href="/dashboard">Strona Główna</a></li>
+                            <li class="navigation__item"><a class="link " href="/books">Książki</a></li>
+                            <li class="navigation__item"><a class="link" href="/hirements">Wypożyczenia</a></li>
+                            <li class="navigation__item"><a class="link active" href="/contact">Kontakt</a></li>
+                            <li class="navigation__item"><a class="link" href="/settings">Ustawienia</a></li>
+                            <li class="navigation__item "><a class ="login-btn" href="/logout">Wyloguj</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+  </div>
+    <div class="main-container">
+        <div class="left-side-image">
+        <img src="{%  static 'img/contact.svg' %}"/>
+        </div>
+       <div class="contact-container">
+            <form method="POST">
+                {% csrf_token %}
+                <h1>Kontakt</h1>
+                <div class="input-div subject">
+                        <h2>Temat</h2>
+                        {{ form.subject }}
+                </div>
+                <div class="input-div message">
+                    <div>
+                        <h2>Wiadomość</h2>
+                        {{ form.message }}
+    {#                                <input type="password" class="input">#}
+                    </div>
+                </div>
+                {% for message in messages %}
+                    <p class="validation-error" >{{ message }}</p>
+                {% endfor %}
+                <div class="buttonHolder">
+                <input type="submit" value="Wyślij" class="submit-button">
+                </div>
+            </form>
+       </div>
+    </div>
+        {% block js %}
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        {% endblock js %}
+{% endblock content %}

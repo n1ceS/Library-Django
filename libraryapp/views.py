@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from .models import Reader, Book, Hirement
+from .models import Reader, Book, Hirement, Author, Category, Message
 from django.utils import timezone, translation
 from django.contrib.auth.models import User, Group
-from .forms import RegisterUserForm, LoginForm
+from .forms import RegisterUserForm, LoginForm, ContactForm
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
 from django.core.mail import EmailMultiAlternatives
@@ -95,8 +95,21 @@ def dashboard(request):
 
 @login_required(login_url='/login')
 def get_all_books(request):
+    empty = False
     books = Book.objects.all()
-    return render(request, 'books.html', { 'books' : books})
+    if request.method == "POST" :
+        selectedAuthor = request.POST['authors']
+        selectedCategory = request.POST['categories']
+        if selectedAuthor != "-1":
+            books = books.filter(author=Author.objects.get(id=selectedAuthor))
+        if selectedCategory != "-1":
+            books = books.filter(category=Category.objects.get(id=selectedCategory))
+
+    authors = Author.objects.all()
+    categories = Category.objects.all()
+    if not books:
+        empty = True
+    return render(request, 'books.html', { 'books' : books, 'authors' : authors, 'categories' : categories, 'empty' : empty})
 
 @login_required(login_url='/login')
 def reservation(request,pk):
@@ -141,3 +154,25 @@ def getHirements(request):
     reader = Reader.objects.get(user = request.user)
     hirements = Hirement.objects.filter(reader = reader)
     return render(request, 'myhirements.html', {'hirements' : hirements})
+
+@login_required(login_url='/login')
+def contact(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            Message.objects.create(sender=request.user, subject=subject, message = message)
+            return redirect('dashboard')
+    return render(request, 'contact.html', {'form' : form})
+
+@login_required(login_url='/login')
+def settings(request):
+    reader = Reader.objects.get(user=request.user)
+    if(request.method == "POST"):
+
+
+
+    return render(request, 'settings.html', {'reader': reader})

@@ -29,8 +29,32 @@
             </div>
 
   </div>
+    {% if empty %}
+        <div class="empty-table">
+        <img src="{% static 'dashboard/img/empty_table.svg' %}"/>
+        <h1>Nic tu nie ma.</h1>
+        </div>
+    {% endif %}
+    <form method="post" class="search-box">
+    {% csrf_token %}
+        <h1>Autor:</h1>
+        <select name="authors">
+            <option value="-1">wybierz...</option>
+            {% for author in authors %}
+                <option value="{{ author.id }}">{{ author.first_name }} {{ author.last_name }}</option>
+            {% endfor %}
+        </select>
+         <h1>Kategoria:</h1>
+        <select name="categories">
+            <option value="-1">wybierz...</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.category }}</option>
+            {% endfor %}
+        </select>
+    <button value="Szukaj">Szukaj</button>
+    </form>
     <div class="book-table">
-                <table class="content-table">
+        <table class="content-table">
             <thead>
                 <tr>
                     <th></th>
