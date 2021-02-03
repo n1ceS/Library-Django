@@ -20,8 +20,6 @@
 }
 .img {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
 }
 .img img{ 
     margin-right: 270px;
@@ -61,20 +59,7 @@ form h2{
     padding: 5px 0;
     border-bottom: 2px solid #d9d9d9;
 }
-.input-div:after, .input-div:before{
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    width: 0%;
-    height: 3px;
-    background-color: #A063FF;
-}
-.input-div:after{
-    right:50%;
-}
-.input-div::before{
-    left:50%;
-}
+
 .input-div.login {
     margin-top: 0;
 
@@ -86,7 +71,7 @@ form h2{
 .input-div.focus .i i{ /*PODSWIETLENIE IKON*/
     color: #A063FF;
 }
-/* JAK FOCUS TO USUWAMY PLACEHOLDER */
+/* JAK FOCUS TO PRZEMIESZCZAMY PLACEHOLDER */
 .input-div.focus div h5{
     top: -5px;
     font-size: 10px;

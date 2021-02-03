@@ -34,7 +34,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
     author = models.ForeignKey(Author, null=True, on_delete=models.CASCADE, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
-    image = models.ImageField(upload_to='libraryapp/static/uploads/books/', default='libraryapp/static/uploads/books/default.jpg')
+    image = models.ImageField(upload_to='uploads/books/', default='uploads/books/default.jpg')
     description = models.CharField(max_length=500, null=True, blank=True)
     count = models.IntegerField(null=True, blank=True)
     year = models.IntegerField(null=True, blank=True)
