@@ -2,23 +2,23 @@
 {% block title %} Rejestracja {% endblock %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'authentication/css/loginregister.css' %}">
-<script type="text/javascript" src="{% static 'authentication/js/loginRegister.js' %}" async defer></script>
+<link rel="stylesheet" href="{% static 'styles/authentication.css' %}">
+<script type="text/javascript" src="{% static 'scripts/authentication.js' %}" async defer></script>
 {% endblock head %}
 {% block content %}
 <div class="logo">
-    <a href="/"><img src="{% static 'authentication/img/logo.png' %}"></a>
+    <a href="/"><img src="{% static 'img/logo.png' %}"></a>
 </div>
 <div class="content">
-            <img class="left_wave" src="{% static 'authentication/img/left_wave.png' %}" alt="left wave">
+            <img class="left_wave" src="{% static 'img/left_wave.png' %}" alt="left wave">
             <div class="container">
                 <div class="img">
-                    <img  src="{% static 'authentication/img/person.svg' %}" alt="">
+                    <img src="{% static 'img/person.svg' %}" alt="">
                 </div>
                 <div class="section-login">
                     <form method="POST">
                         {% csrf_token %}
-                        <img src="{% static 'authentication/img/avatar.svg' %}" alt="avatar" class="avatar">
+                        <img src="{% static 'img/avatar.svg' %}" alt="avatar" class="avatar">
                         <h2>Logowanie</h2>
                         <div class="input-div login">
                             <div class="i">

@@ -3,7 +3,7 @@
     {% load static %}
 <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'home/styles/style.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -13,54 +13,144 @@
             <div class="header">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="/"><img src="{% static 'home/img/logo.png' %}"></a>
+                        <a href="/"><img src="{% static 'img/logo.png' %}"></a>
                     </div>
                     <div class="navigation">
                         <ul class="navigation__list">
-                           <li class="navigation__item"><a class="link" href="/">Strona Główna</a></li>
-                            <li class="navigation__item"><a class="link" href="/">Jak to działa?</a></li>
-                            <li class="navigation__item"><a class="link" href="/">Warunki</a></li>
-                            <li class="navigation__item"><a class="link" href="/">Kontakt</a></li>
+                           <li class="navigation__item"><a class="link" href="#main-content">Strona Główna</a></li>
+                            <li class="navigation__item"><a class="link" href="#about-services">Jak to działa?</a></li>
+                            <li class="navigation__item"><a class="link" href="#requirements">Warunki</a></li>
+                            <li class="navigation__item"><a class="link" href="#contact">Kontakt</a></li>
                             <li class="navigation__item "><a class ="login-btn" href="/login">Zaloguj</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-                <div class="banner">
-                    <div class="app-text">
-                        <h3>Biblioteka dla każdego</h3>
-                        <h1>"Kto czyta, żyje podwójnie."</h1>
-                        <p>Wypożyczanie książek jeszcze nigdy nie było tak łatwe! <br>Rezerwuj, wypożyczaj i zwracaj książki za pomocą własnego QR Code!</p>
+                <div class="main-content" id="main-content">
+                    <div class="banner" id="banner">
+                        <div class="app-text">
+                            <h3>Biblioteka dla każdego</h3>
+                            <h1>"Kto czyta, żyje podwójnie."</h1>
+                            <p>Wypożyczanie książek jeszcze nigdy nie było tak łatwe! <br>Rezerwuj, wypożyczaj i zwracaj książki za pomocą własnego QR Code!</p>
 
-                        <div class="btn-group">
-                                <a href="/dashboard" class="signup-btn">Zacznij czytać!</a>
+                            <div class="btn-group">
+                                    <a href="/dashboard" class="signup-btn">Zacznij czytać!</a>
+                            </div>
+                        </div>
+                        <div class="app-picture">
+                            <img src="{% static 'img/home_library.png' %}" alt="library picture">
+                        </div>
+
+                    </div>
+                </div>
+                    <div class="about-services" id="about-services">
+                        <ul>
+                            <li>
+                                <img src="{% static 'img/find_your_book.png' %}" alt="">
+                                <h1>Znajdź książkę</h1>
+                                <p>Posiadamy thrillery, książki fantasy, romanse, horrory czy książki biograficzne.<br> Na pewno znajdziesz coś dla Siebie! </p>
+                            </li>
+
+                            <li>
+                                <img src="{% static 'img/get_qrcode.png' %}" alt="">
+                                <h1>Zdobądź QR CODE</h1>
+                                <p>Po pomyślnym wypożyczeniu książki<br> dostaniesz QR Code, dzięki któremu dany tytuł będzie należał tylko do Ciebie!</p>
+                            </li>
+
+                            <li>
+                                <img src="{% static 'img/book_reading.png' %}" alt="">
+                                <h1>Odbierz książkę</h1>
+                                <p>Przyjdź do wybranego punktu, okaż swój QR Code i zacznij czytać!</p>
+                            </li>
+                    </ul>
+                    </div>
+                <div class="requirements-container" id="requirements">
+                    <h1>Kilka zasad</h1>
+                    <div class="requirements-box">
+                        <div class="box">
+                            <div class="number-icon">
+                                <div class="icon">
+                                    <span class="number">1</span>
+                                </div>
+                            </div>
+                            <h2>Zarejestrowane konto</h2>
+                            <p>Chcąć korzystać z naszego serwisu, musisz posiadać <strong>aktywne konto</strong>.
+                                Na szczęście proces całej rejestracji trwa kilka minut.</p>
+                        </div>
+                        <div class="box">
+                            <div class="number-icon">
+                                <div class="icon">
+                                    <span class="number">2</span>
+                                </div>
+                            </div>
+                            <h2>Jeden egzemplarz</h2>
+                            <p>Mając na uwadze jakość świadczonych usług, jesteśmy zmuszeni na aktualnym etapie biblioteki ograniczyć
+                                maksymalną liczbę wypożyczeń danego egzemplarza do <strong>jednej sztuki</strong>.
+                            </p>
+                        </div>
+
+                        <div class="box">
+                            <div class="number-icon">
+                                <div class="icon">
+                                    <span class="number">3</span>
+                                </div>
+                            </div>
+                            <h2>Ograniczony czas</h2>
+                            <p>Musisz wiedzieć, że u nas nie istnieje wypożyczenie na wieczne nieoddanie!
+                                Wypożyczając książkę, jesteś zobowiązany/a do jej oddania. Możesz wziąć ją na <strong>15</strong>, <strong>30</strong>, <strong>45</strong> lub <strong>60</strong> dni.
+                            </p>
+                        </div>
+
+                        <div class="box">
+                            <div class="number-icon">
+                                <div class="icon">
+                                    <span class="number">4</span>
+                                </div>
+                            </div>
+                            <h2>Szacunek</h2>
+                            <p>Chcemy, aby nasze książki <strong>służyły wam</strong> jak najdłużej, dlatego wypożyczając
+                                jesteś zobowiązany do oddania egzemplarza w stanie <strong>niepogorszonym</strong>.
+                            </p>
                         </div>
                     </div>
-                    <div class="app-picture">
-                        <img src="{% static 'home/img/home_library.png' %}" alt="library picture">
+                </div>
+                <div class="contact" id="contact">
+                    <div class="contact-box" >
+                        <div class="about-us">
+                            <h2 class="contact-title">O nas</h2>
+                            <p>
+                                QRLibrary oferuje darmowe wypożyczanie książek przy użyciu bezpiecznego kodu QR.
+                                W naszej bazie posiadamy ponad 3400 egzemplarzy książek. Posiadamy thrillery, książki fantasy,
+                                romanse, horrory czy książki biograficzne.
+                                W razie jakichkolwiek pytań prosimy o kontakt mailowy lub telefoniczny.
+
+                            </p>
+                        </div>
+                        <div class="contact-details-box">
+                            <h2 class="contact-title">Lokalizacja</h2>
+                            <div class="contact-details">
+                                <img src="{% static 'img/contact_home_icon.png' %}" />
+                                <p>ul. Radziszewskiego 10 <br> 20-400 Lublin</p>
+                            </div>
+                            <div class="contact-details">
+                                <img src="{% static 'img/contact_telephone_icon.png' %}" />
+                                <p>+48 123 456 789</p>
+                            </div>
+                            <div class="contact-details">
+                                <img src="{% static 'img/contact_message_icon.png' %}" />
+                                <p>email@emailservice.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-map-box">
+                            <div style="width: 100%"><iframe width="500" height="400" frameborder="0" scrolling="no"
+                            marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=500&amp;height=400&amp;hl=en&amp;q=ul.%20Radziszewskiego%2010+(WYDZIA%C5%81%20MATEMATYKI,%20FIZYKI%20I%20INFORMATYKI)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                               </div>
+                        </div>
                     </div>
-
+                    <div class="footer">
+                        <h3>&copy 2021 Michał Marczuk </h3>
+                    </div>
                 </div>
-                <div class="about-services">
-                    <ul>
-                        <li>
-                            <img src="{% static 'home/img/find_your_book.png' %}" alt="">
-                            <h1>Znajdź książkę</h1>
-                            <p>Posiadamy thrillery, książki fantasy, romanse, horrory czy książki biograficzne.<br> Na pewno znajdziesz coś dla Siebie! </p>
-                        </li>
 
-                        <li>
-                            <img src="{% static 'home/img/get_qrcode.png' %}" alt="">
-                            <h1>Zdobądź QR CODE</h1>
-                            <p>Po pomyślnym wypożyczeniu książki<br> dostaniesz QR Code, dzięki któremu dany tytuł będzie należał tylko do Ciebie!</p>
-                        </li>
-
-                        <li>
-                            <img src="{% static 'home/img/book_reading.png' %}" alt="">
-                            <h1>Odbierz książkę</h1>
-                            <p>Przyjdź do wybranego punktu, okaż swój QR Code i zacznij czytać!</p>
-                        </li>
-                </ul>
-                </div>
         </div>
 {% endblock content %}

@@ -1,6 +1,7 @@
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout, update_session_auth_hash
 from .models import Reader, Book, Hirement, Author, Category, Message
 from django.utils import timezone, translation
 from django.contrib.auth.models import User, Group
@@ -10,7 +11,7 @@ from .decorators import unauthenticated_user
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.db.models import F, Count
-import itertools
+import itertools, json
 # Create your views here.
 import random,re
 email_regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
@@ -50,7 +51,7 @@ def register(request):
                 reader.save()
                 return redirect('login')
     form = RegisterUserForm()
-    return render(request, "authentication/register.html", {"form" : form })
+    return render(request, "register.html", {"form" : form})
 
 @unauthenticated_user
 def login(request):
@@ -70,7 +71,7 @@ def login(request):
                 messages.error(request, "Niepoprawne dane logowania!")
                 return redirect('login')
     form = LoginForm()
-    return render(request, "authentication/login.html", {"form" : form })
+    return render(request, "login.html", {"form" : form})
 
 def logout(request):
     auth_logout(request)
@@ -173,7 +174,21 @@ def contact(request):
 @login_required(login_url='/login')
 def settings(request):
     reader = Reader.objects.get(user=request.user)
-    if(request.method == "POST"):
+    if request.method == "POST" and request.POST.get('action') == "personal-password":
+        password = request.POST.get('current-password')
+        new_pasword = request.POST.get('new-password')
+        if request.user.check_password(password):
+            request.user.set_password(new_pasword)
+            request.user.save()
+            update_session_auth_hash(request, request.user)
+            response = JsonResponse({"success": "Hasło zostało zmienione!"})
+            response.status_code = 201
+            return response
+        else:
+            response = JsonResponse({"error": "Nieprawidłowe hasło użytkownika!"})
+            response.status_code = 401
+            return response
+    elif request.method == "POST":
         username = request.POST['username']
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']

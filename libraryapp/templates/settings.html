@@ -27,6 +27,24 @@
                 </div>
             </div>
      </div>
+    <div class="popup">
+        <div class="popup-form">
+            <img src="{% static 'img/close_icon.png' %}" id="close-popup-button" />
+            <form method="post" name="update-password" id="update-password-form">
+                {% csrf_token %}
+                <input type='hidden' name='action' value='personal-password'>
+                <h1>Zmiana hasła</h1>
+                <label for="current-password" class="input-label">Aktualne hasło</label>
+                <input required="required" type="password" name="current-password" id="current-password" />
+                <label for="new-password" class="input-label">Nowe Hasło</label>
+                <input required="required" type="password" name="new-password" id="new-password"/>
+                <label for="new-repeated-password" class="input-label">Powtórz hasło</label>
+                <input required="required" type="password" name="new-repeated-password" id="new-repeated-password"/>
+                <span id='message'></span>
+                <input class="submit-button" id="update-password-submit" type="submit" value="Aktualizuj" name="personal-password"/>
+            </form>
+        </div>
+    </div>
         <div class="settings-container">
             <div class="settings-panel">
                 <div class="info-left-side">
@@ -38,11 +56,12 @@
                         <h3>Lorem, ipsum dolor.</h3>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus!</p>
                     </div>
-                    <p class="change-password">Zmień Hasło</p>
+                    <p class="change-password" id="change-password-button">Zmień Hasło</p>
                 </div>
                 <div class="details-right-side">
 
                     <form method="POST">
+                        <input type='hidden' name='action' value='personal-information'>
                         {% csrf_token %}
                         <h1>Dane użytkownika</h1>
                         <label for="username" class="input-label">Nazwa użytkownika</label>
@@ -62,9 +81,14 @@
                                 <p class="validation-error">{{ message }}</p>
                             {% endif %}
                         {% endfor %}
-                        <button type="submit" value="Aktualizuj">Aktualizuj</button>
+                        <button class="submit-button" type="submit" value="Aktualizuj" name="personal-information">Aktualizuj</button>
                     </form>
                 </div>
             </div>
         </div>
+    {% block js %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+        <script src="{% static 'scripts/settings.js' %}"></script>
+    {% endblock js %}
 {% endblock content %}
