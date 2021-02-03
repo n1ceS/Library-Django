@@ -143,7 +143,6 @@ def reservation(request,pk):
 
 def sendEmail(hirement):
     html = get_template('emailTemplate.html')
-    #d = Context({'hirement' : hirement})
     subject, from_email, to = "Potwierdzenie wypożyczenia " + hirement.book.title + " - QRLibrary", 'wypozyczenia@qrlibrary.com', hirement.reader.user.email
     html_content = html.render({'hirement': hirement})
     msg = EmailMultiAlternatives(subject, "", from_email, [to])
