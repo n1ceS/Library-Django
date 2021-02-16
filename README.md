@@ -13,12 +13,13 @@ Projekt stworzony w ramach przedmiotu Programowanie wysokiego poziomu. Aplikacja
 # [START]
 W pliku requirements znajdują się zależności, które należy dociągnąć.
 a następnie odpalić:
-```  python manage.py runserver  
-
+```  
+python manage.py runserver    
 ```
 
 dane logowania do admina:
-```  user: admin
+```  
+     user: admin   
      password: 1234 
 ```
 
@@ -26,11 +27,11 @@ dane logowania do admina:
 # [SCREENY]
 ### ![mainPage](https://github.com/n1ceS/Library-Django/blob/master/img/mainPage.gif)        
 ### ![home](https://github.com/n1ceS/Library-Django/blob/master/img/home.PNG)      
-### ![books](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/books.PNG)       
-### ![booksDetails](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/bookDetails.PNG)       
-### ![success](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/success.PNG)       
-### ![mail](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/mail.PNG)      
-### ![hirements](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/hirements.PNG)         
-### ![mail](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/mail.PNG)      
-### ![contact](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/contact.PNG)      
-### ![settings](https://github.com/n1ceS/CinemaJavaFX/blob/main/img/settings.PNG)       
+### ![books](https://github.com/n1ceS/Library-Django/blob/master/img/books.PNG)       
+### ![booksDetails](https://github.com/n1ceS/Library-Django/blob/master/img/bookDetails.PNG)       
+### ![success](https://github.com/n1ceS/Library-Django/blob/master/img/success.PNG)       
+### ![mail](https://github.com/n1ceS/Library-Django/blob/master/img/mail.PNG)      
+### ![hirements](https://github.com/n1ceS/Library-Django/blob/master/img/hirements.PNG)         
+### ![mail](https://github.com/n1ceS/Library-Django/blob/master/img/mail.PNG)      
+### ![contact](https://github.com/n1ceS/Library-Django/blob/master/img/contact.PNG)      
+### ![settings](https://github.com/n1ceS/Library-Django/blob/master/img/settings.PNG)       
