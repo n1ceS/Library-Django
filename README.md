@@ -31,7 +31,6 @@ dane logowania do admina:
 ### ![booksDetails](https://github.com/n1ceS/Library-Django/blob/master/img/bookDetails.PNG)       
 ### ![success](https://github.com/n1ceS/Library-Django/blob/master/img/success.PNG)       
 ### ![mail](https://github.com/n1ceS/Library-Django/blob/master/img/mail.PNG)      
-### ![hirements](https://github.com/n1ceS/Library-Django/blob/master/img/hirements.PNG)         
-### ![mail](https://github.com/n1ceS/Library-Django/blob/master/img/mail.PNG)      
+### ![hirements](https://github.com/n1ceS/Library-Django/blob/master/img/hirements.PNG)              
 ### ![contact](https://github.com/n1ceS/Library-Django/blob/master/img/contact.PNG)      
 ### ![settings](https://github.com/n1ceS/Library-Django/blob/master/img/settings.PNG)       
